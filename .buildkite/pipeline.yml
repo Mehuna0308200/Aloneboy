@@ -1,0 +1,54 @@
+Build Kit YAML file
+version: 1.0
+
+Build configuration
+build:
+  # Docker image for build environment
+  image: python:3.9-slim
+
+  # Commands to run before build
+  before:
+    - pip install pymongo python-telegram-bot pyTelegramBotAPI certifi
+
+  # Build command
+  command: python3 soul.py
+
+  # Working directory
+  working_directory: ./Youare
+
+  # Environment variables
+  environment:
+    TELEGRAM_BOT_TOKEN: 8160560841:AAFMXzS4yhXU7FcQpJyBcI9WKy_L-wFJGtY
+    TELEGRAM_CHAT_ID: 1662672529
+
+  # Dependencies
+  dependencies:
+    - pymongo
+    - python-telegram-bot
+    - pyTelegramBotAPI
+    - certifi
+
+  # Artifacts
+  artifacts:
+    - path: ./Youare
+      type: directory
+
+Deploy configuration
+deploy:
+  # Docker image for deploy environment
+  image: python:3.9-slim
+
+  # Commands to run before deploy
+  before:
+    - pip install pymongo python-telegram-bot pyTelegramBotAPI certifi
+
+  # Deploy command
+  command: python3 deploy.py
+
+  # Working directory
+  working_directory: ./Youare
+
+  # Environment variables
+  environment:
+    TELEGRAM_BOT_TOKEN: 8160560841:AAFMXzS4yhXU7FcQpJyBcI9WKy_L-wFJGtY
+    TELEGRAM_CHAT_ID: 1662672529
